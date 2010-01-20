@@ -24,7 +24,7 @@ issubdir() {
 }
 
 
-apps_still_running() {
+no_apps_running() {
   for l in /proc/*/root; do
     issubdir "$(readlink "$l")" "$DEV" || return 1
   done
@@ -49,5 +49,5 @@ chroot $DEB ${*:-$SHELL -l}
 
 # deactivate swap if no apps left
 swap_active "$SWAPFILE" && \
-  ! apps_still_running && \
+  no_apps_running && \
   swapoff $SWAPFILE
