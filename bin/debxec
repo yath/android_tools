@@ -23,7 +23,6 @@ issubdir() {
   x"$(ls -id /"$2" | grep -Eo '[0-9]+')" = x"$(ls -id "$(echo x"$1"|cut -b 2-"$len")" | grep -Eo '[0-9]+')" ]
 }
 
-
 no_apps_running() {
   for l in /proc/*/root; do
     issubdir "$(readlink "$l")" "$DEV" && return 1
