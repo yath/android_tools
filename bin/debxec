@@ -26,7 +26,7 @@ issubdir() {
 
 no_apps_running() {
   for l in /proc/*/root; do
-    issubdir "$(readlink "$l")" "$DEV" || return 1
+    issubdir "$(readlink "$l")" "$DEV" && return 1
   done
 }
 
